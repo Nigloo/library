@@ -9,10 +9,10 @@
     <span class="t">{{ book.titre }} </span><br>
     <em>{{ book.auteur }}</em><br/>
     <p>{{ book.synopsis }}</p>
-    <em>Exemplaires restants: {{ book.nb_left }}</em><br/>
+    <em>Exemplaires restants: {{ book.nb_left }}/{{ book.nb_total }}</em><br/>
     <ul>
     {% for id in book.ids %}
-        <li >
+        <li class="{% if book.emprunt.has(id) %}emprunt{% endif %}">
         {{ id }}
         </li>
     {% endfor %}
