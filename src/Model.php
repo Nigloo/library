@@ -80,11 +80,11 @@ class Model
         $this->execute($query, array($titre));
         $book['ids'] = $query->fetchAll();
         
-        $query = $this->pdo->prepare('SELECT count(livres.id) FROM livres JOIN emprunts ON livres.id = emprunts.id WHERE livres.titre = ?');
+        $query = $this->pdo->prepare('SELECT count(livres.id) FROM livres JOIN emprunts ON livres.id = emprunts.id WHERE livres.titre = ? AND emprunts.fini');
         $this->execute($query, array($titre));
         $book['nb_left'] = $query->fetch();
         
-        $query = $this->pdo->prepare('SELECT livres.id FROM livres JOIN emprunts ON livres.id = emprunts.id WHERE livres.titre = ?');
+        $query = $this->pdo->prepare('SELECT livres.id FROM livres JOIN emprunts ON livres.id = emprunts.id WHERE livres.titre = ? AND emprunts.fini');
         $this->execute($query, array($titre));
         $book['emprunt'] = $query->fetchAll();
         
