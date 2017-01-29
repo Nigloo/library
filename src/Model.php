@@ -80,7 +80,7 @@ class Model
         $this->execute($query, array($titre));
         $book['ids'] = $query->fetchAll();
         
-        $query = $this->pdo->prepare('SELECT count(livres.id) FROM livres JOIN emprunts ON livres.id = emprunts.id WHERE livres.titre = ? AND NOT emprunts.fini');
+        $query = $this->pdo->prepare('SELECT count(livres.id) FROM livres WHERE livres.id NOT IN (SELECT emprunts.id FROM emprunts)');
         $this->execute($query, array($titre));
         $book['nb_left'] = $query->fetch();
         
