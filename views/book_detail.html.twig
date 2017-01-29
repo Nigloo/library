@@ -1,0 +1,21 @@
+{% set books_active = 1 %}
+{% extends 'layout.html.twig' %}
+
+{% block contents %}
+<div class="book">
+    {% if book.image %}
+        <img src="{{ app.request.basepath }}/uploads/{{ book.image }}.jpg" />
+    {% endif %}
+    <span class="t">{{ book.titre }} </span><br>
+    <em>{{ book.auteur }}</em><br/>
+    <p>{{ book.synopsis }}</p>
+    <em>Exemplaires restants: {{ book.nb_left }}</em><br/>
+    <ul>
+    {% for id in book.ids %}
+        <li >
+        {{ id }}
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}
